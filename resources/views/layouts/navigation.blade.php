@@ -16,7 +16,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         <img src="{{ asset('imagenes/casa.png') }}" alt="imagen"
                             class="block h-7 w-auto fill-current text-gray-800 imagenCasa">
-                        <span class="nav-text">{{ __('HOME') }}</span>
+                        <span class="nav-text">{{ __('INICIO') }}</span>
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex navbar-icon">
@@ -52,7 +52,7 @@
                         <x-nav-link :href="route('games')" :active="request()->routeIs('games')" class="flex items-center">
                             <img src="{{ asset('imagenes/mando.png') }}" alt="imagen"
                                 class="block h-6 w-auto fill-current text-gray-800 imagenConsola">
-                            <span class="nav-text">{{ __('GAMES') }}</span>
+                            <span class="nav-text">{{ __('JUEGOS') }}</span>
                         </x-nav-link>
                     </div>
                 @endif
@@ -61,7 +61,7 @@
                         <x-nav-link :href="route('stores')" :active="request()->routeIs('stores')" class="flex items-center">
                             <img src="{{ asset('imagenes/tienda.png') }}" alt="imagen"
                                 class="block h-6 w-auto fill-current text-gray-800 imagenConsola">
-                            <span class="nav-text">{{ __('STORES') }}</span>
+                            <span class="nav-text">{{ __('TIENDAS') }}</span>
                         </x-nav-link>
                     </div>
                 @endif
@@ -103,7 +103,7 @@
                     <x-slot name="content">
                         <!-- Profile -->
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -113,7 +113,7 @@
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar Sesión') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

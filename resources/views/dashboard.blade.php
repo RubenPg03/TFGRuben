@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             <form action="{{ route('dashboard') }}" method="GET" class="flex items-center">
                 <div class="max-w-lg mx-auto flex items-center justify-center">
-                    <input type="text" name="search" placeholder="Search a game..."
+                    <input type="text" name="search" placeholder="Buscar un juego..."
                         class="border border-gray-300 flex-grow buscador" value="{{ $search }}">
                     <button type="submit" class="bg-blue-500 px-3 py-2 boton">Buscar</button>
                 </div>
