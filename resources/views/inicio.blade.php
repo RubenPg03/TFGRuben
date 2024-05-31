@@ -47,7 +47,7 @@
             <div class="mb-60">
                 <a href="{{ route('login') }}"
                     class="block mb-6 px-6 py-3 text-white font-semibold rounded-lg shadow-md hover:opacity-90 transition duration-300 ease-in-out gradient-red btn-expand">Iniciar Sesión
-                    in</a>
+                    </a>
 
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}"

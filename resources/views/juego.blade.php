@@ -57,7 +57,10 @@
                 <div class="p-6">
                     <h3 class="text-xl font-semibold mb-4">Tiendas:</h3>
                     <div class="grid grid-cols-3 gap-4">
-                        @foreach ($game->tiendas as $tienda)
+                        <?php
+                        $tiendasOrdenadas = $game->tiendas->sortBy('precio');
+                        ?>
+                        @foreach ($tiendasOrdenadas as $tienda)
                             <div class="bg-gray-100 p-4 border rounded-lg tienda-link"
                                 data-url="{{ $tienda->url_juego_tienda }}">
                                 <p class="text-gray-700"><strong>Nombre:</strong> {{ $tienda->nombre }}</p>
