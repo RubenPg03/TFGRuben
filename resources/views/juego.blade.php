@@ -118,7 +118,7 @@
 
     .botonCom {
         text-align: center;
-        width: 18%;
+        width: 20%;
         background-color: rgb(165, 165, 165);
         color: white;
         transition: background-color 0.3s, transform 0.3s;
@@ -130,7 +130,7 @@
 
     .botonCal {
         text-align: center;
-        width: 15%;
+        width: 18%;
         background-color: rgb(165, 165, 165);
         color: white;
         transition: background-color 0.3s, transform 0.3s;
