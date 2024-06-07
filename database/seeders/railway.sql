@@ -13,7 +13,28 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Volcando estructura de base de datos para proyectofinal
+CREATE DATABASE IF NOT EXISTS `railway` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `railway`;
+
+-- Volcando estructura para tabla proyectofinal.calificaciones
+CREATE TABLE IF NOT EXISTS `calificaciones` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `videojuego_id` bigint unsigned NOT NULL,
+  `usuario_id` bigint unsigned NOT NULL,
+  `calificacion` int NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `calificaciones_videojuego_id_foreign` (`videojuego_id`),
+  KEY `calificaciones_usuario_id_foreign` (`usuario_id`),
+  CONSTRAINT `calificaciones_usuario_id_foreign` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `calificaciones_videojuego_id_foreign` FOREIGN KEY (`videojuego_id`) REFERENCES `videojuegos` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Volcando datos para la tabla proyectofinal.calificaciones: ~5 rows (aproximadamente)
 INSERT INTO `calificaciones` (`id`, `videojuego_id`, `usuario_id`, `calificacion`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(10, 2, 1, 2, NULL, '2024-05-21 16:53:01', '2024-05-21 16:53:29'),
@@ -22,7 +43,23 @@ INSERT INTO `calificaciones` (`id`, `videojuego_id`, `usuario_id`, `calificacion
 	(13, 3, 1, 8, NULL, '2024-06-03 15:03:01', '2024-06-03 15:03:01'),
 	(14, 4, 1, 4, NULL, '2024-06-03 15:06:28', '2024-06-03 15:06:28');
 
--- Volcando datos para la tabla proyectofinal.comentarios: ~4 rows (aproximadamente)
+-- Volcando estructura para tabla proyectofinal.comentarios
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `videojuego_id` bigint unsigned NOT NULL,
+  `usuario_id` bigint unsigned NOT NULL,
+  `comentario` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comentarios_videojuego_id_foreign` (`videojuego_id`),
+  KEY `comentarios_usuario_id_foreign` (`usuario_id`),
+  CONSTRAINT `comentarios_usuario_id_foreign` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `comentarios_videojuego_id_foreign` FOREIGN KEY (`videojuego_id`) REFERENCES `videojuegos` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla proyectofinal.comentarios: ~5 rows (aproximadamente)
 INSERT INTO `comentarios` (`id`, `videojuego_id`, `usuario_id`, `comentario`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 2, 1, 'Me gusta la fruta', NULL, '2024-05-20 15:54:11', '2024-05-20 15:54:11'),
 	(3, 1, 1, 'dsdsdsd', NULL, '2024-05-21 15:17:38', '2024-05-21 15:17:38'),
@@ -30,9 +67,35 @@ INSERT INTO `comentarios` (`id`, `videojuego_id`, `usuario_id`, `comentario`, `r
 	(5, 3, 1, 'Viva FALLOUT!!!!!!!!!!!!!!!!!!!!', NULL, '2024-06-03 15:02:56', '2024-06-03 15:02:56'),
 	(6, 4, 1, 'No me gusta nada', NULL, '2024-06-03 15:06:36', '2024-06-03 15:06:36');
 
+-- Volcando estructura para tabla proyectofinal.failed_jobs
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Volcando datos para la tabla proyectofinal.failed_jobs: ~0 rows (aproximadamente)
 
--- Volcando datos para la tabla proyectofinal.juegoplataforma: ~17 rows (aproximadamente)
+-- Volcando estructura para tabla proyectofinal.juegoplataforma
+CREATE TABLE IF NOT EXISTS `juegoplataforma` (
+  `videojuego_id` bigint unsigned NOT NULL,
+  `plataforma_id` bigint unsigned NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`videojuego_id`,`plataforma_id`),
+  KEY `juegoplataforma_plataforma_id_foreign` (`plataforma_id`),
+  CONSTRAINT `juegoplataforma_plataforma_id_foreign` FOREIGN KEY (`plataforma_id`) REFERENCES `plataformas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `juegoplataforma_videojuego_id_foreign` FOREIGN KEY (`videojuego_id`) REFERENCES `videojuegos` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla proyectofinal.juegoplataforma: ~19 rows (aproximadamente)
 INSERT INTO `juegoplataforma` (`videojuego_id`, `plataforma_id`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 4, NULL, '2024-05-20 15:44:59', '2024-05-20 15:44:59'),
 	(2, 1, NULL, '2024-05-20 15:45:41', '2024-05-20 15:45:41'),
@@ -54,7 +117,15 @@ INSERT INTO `juegoplataforma` (`videojuego_id`, `plataforma_id`, `remember_token
 	(6, 3, NULL, '2024-06-03 15:13:13', '2024-06-03 15:13:13'),
 	(6, 4, NULL, '2024-06-03 15:13:13', '2024-06-03 15:13:13');
 
--- Volcando datos para la tabla proyectofinal.migrations: ~0 rows (aproximadamente)
+-- Volcando estructura para tabla proyectofinal.migrations
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla proyectofinal.migrations: ~10 rows (aproximadamente)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
@@ -67,9 +138,44 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(9, '2024_05_04_094715_plataformas', 1),
 	(10, '2024_05_04_095154_juegoplataforma', 1);
 
+-- Volcando estructura para tabla proyectofinal.password_reset_tokens
+CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Volcando datos para la tabla proyectofinal.password_reset_tokens: ~0 rows (aproximadamente)
 
+-- Volcando estructura para tabla proyectofinal.personal_access_tokens
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Volcando datos para la tabla proyectofinal.personal_access_tokens: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla proyectofinal.plataformas
+CREATE TABLE IF NOT EXISTS `plataformas` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `plataforma` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla proyectofinal.plataformas: ~4 rows (aproximadamente)
 INSERT INTO `plataformas` (`id`, `plataforma`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -78,7 +184,22 @@ INSERT INTO `plataformas` (`id`, `plataforma`, `remember_token`, `created_at`, `
 	(3, 'playstation', NULL, '2024-05-20 15:37:21', '2024-05-20 15:37:21'),
 	(4, 'switch', NULL, '2024-05-20 15:37:26', '2024-05-20 15:37:26');
 
--- Volcando datos para la tabla proyectofinal.tienda: ~16 rows (aproximadamente)
+-- Volcando estructura para tabla proyectofinal.tienda
+CREATE TABLE IF NOT EXISTS `tienda` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `videojuego_id` bigint unsigned NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url_juego_tienda` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `precio` decimal(8,2) NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tienda_videojuego_id_foreign` (`videojuego_id`),
+  CONSTRAINT `tienda_videojuego_id_foreign` FOREIGN KEY (`videojuego_id`) REFERENCES `videojuegos` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla proyectofinal.tienda: ~18 rows (aproximadamente)
 INSERT INTO `tienda` (`id`, `videojuego_id`, `nombre`, `url_juego_tienda`, `precio`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 2, 'Instant-Gaming', 'https://www.instant-gaming.com/es/186-comprar-grand-theft-auto-v-pc-juego-rockstar/', 10.49, NULL, '2024-05-20 15:53:24', '2024-05-20 15:53:24'),
 	(3, 2, 'G2A', 'https://www.g2a.com/es/grand-theft-auto-v-rockstar-key-global-i10000000788017?suid=c5675058-45ef-45b9-95ce-b753bd6aefc6', 15.34, NULL, '2024-05-21 14:48:31', '2024-05-21 14:48:31'),
@@ -99,11 +220,40 @@ INSERT INTO `tienda` (`id`, `videojuego_id`, `nombre`, `url_juego_tienda`, `prec
 	(18, 1, 'Eneba', 'https://www.eneba.com/es/nintendo-the-legend-of-zelda-tears-of-the-kingdom-nintendo-switch-eshop-key-united-states', 54.25, NULL, '2024-06-03 15:32:12', '2024-06-03 15:32:12'),
 	(19, 4, 'Eneba', 'https://www.eneba.com/es/steam-hogwarts-legacy-and-onyx-hippogriff-mount-dlc-pc-steam-key-europe', 52.08, NULL, '2024-06-03 15:33:40', '2024-06-03 15:33:40');
 
--- Volcando datos para la tabla proyectofinal.users: ~2 rows (aproximadamente)
+-- Volcando estructura para tabla proyectofinal.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rol` enum('Admin','User') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'User',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla proyectofinal.users: ~3 rows (aproximadamente)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `rol`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'Admin', 'admin@gmail.com', NULL, '$2y$12$0tBye1DfcLiA8md/fzh6gemb/5267WTv68RdxWL0EXgh14hjsBm7O', 'Admin', NULL, '2024-05-20 15:35:51', '2024-05-20 15:35:51'),
 	(2, 'Jaime', 'j@gmail.com', NULL, '$2y$12$IhX8MJ.f5fsK8T2BRHkwq.JGh0V.j.h6BE438AGeMbI.3oisqbDS2', 'User', NULL, '2024-05-20 15:36:07', '2024-05-20 15:36:07'),
 	(3, 'Maria', 'm@gmail.com', NULL, '$2y$12$Y/v6Wcg3CcU4/p1/5/pPHOKizvZpfIlmBNh75iBGdJuDWCcByztiW', 'User', NULL, '2024-06-03 14:55:29', '2024-06-03 14:55:29');
+
+-- Volcando estructura para tabla proyectofinal.videojuegos
+CREATE TABLE IF NOT EXISTS `videojuegos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `genero` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_lanzamiento` date DEFAULT NULL,
+  `imagen` blob,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla proyectofinal.videojuegos: ~6 rows (aproximadamente)
 INSERT INTO `videojuegos` (`id`, `titulo`, `descripcion`, `genero`, `fecha_lanzamiento`, `imagen`, `remember_token`, `created_at`, `updated_at`) VALUES
