@@ -51,6 +51,7 @@
     .containerJuego img {
         transition: transform 0.3s ease;
         max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+        height: 100%;
     }
 
     .containerJuego:hover img {

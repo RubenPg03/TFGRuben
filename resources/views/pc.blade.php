@@ -22,8 +22,8 @@
                                 @if ($count % 6 == 0)
                                     <div class="flex flex-row items-start">
                                 @endif
-                                <div class="p-4 rounded-md flex flex-col items-center shadow-md containerJuego"
-                                    style="width: 14.5%; margin-left: 1%; margin-right: 1%;">
+                                <div class="p-6 rounded-md flex flex-col items-center shadow-md containerJuego"
+                                    >
                                     <a href="{{ route('mostrar', $game->id) }}">
                                         <div class="image-container" style="cursor: pointer;">
                                             <img src="{{ asset('imagenes/' . $game->imagen) }}"
@@ -50,10 +50,16 @@
     .containerJuego {
         position: relative;
         overflow: hidden;
+        width: 14.5%; /* Ajusta esto según sea necesario */
+        margin-left: 5%;
+        margin-right: 5%;
+        min-width: 150px; /* Asegura un ancho mínimo adecuado */
     }
 
     .containerJuego img {
         transition: transform 0.3s ease;
+        max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+        height: 100%;
     }
 
     .containerJuego:hover img {

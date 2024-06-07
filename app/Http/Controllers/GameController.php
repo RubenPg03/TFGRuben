@@ -40,13 +40,13 @@ class GameController extends Controller
         $game->genero = $request->genero;
         $game->fecha_lanzamiento = $request->fecha_lanzamiento;
 
-        // Guarda la imagen en el sistema de archivos y asigna el nombre de la imagen al juego
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $nombre_imagen = time() . '.' . $imagen->getClientOriginalExtension();
             $imagen->move(public_path('imagenes'), $nombre_imagen);
             $game->imagen = $nombre_imagen;
         }
+
 
         // Guarda el juego en la base de datos
         $game->save();

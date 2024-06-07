@@ -50,10 +50,16 @@
     .containerJuego {
         position: relative;
         overflow: hidden;
+        width: 14.5%; /* Ajusta esto según sea necesario */
+        margin-left: 1%;
+        margin-right: 1%;
+        min-width: 150px; /* Asegura un ancho mínimo adecuado */
     }
 
     .containerJuego img {
         transition: transform 0.3s ease;
+        max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+        height: 100%;
     }
 
     .containerJuego:hover img {
