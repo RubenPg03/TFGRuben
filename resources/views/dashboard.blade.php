@@ -17,13 +17,8 @@
                 <div class="p-6 text-gray-900">
                     @if ($games->count() > 0)
                         <div class="grid grid-cols-6 gap-4">
-                            @php $count = 0; @endphp
                             @foreach ($games as $game)
-                                @if ($count % 6 == 0)
-                                    <div class="flex flex-row items-start">
-                                @endif
-                                <div class="p-4 rounded-md flex flex-col items-center shadow-md containerJuego"
-                                    style="width: 14.5%; margin-left: 1%; margin-right: 1%;">
+                                <div class="p-4 rounded-md flex flex-col items-center shadow-md containerJuego">
                                     <a href="{{ route('mostrar', $game->id) }}">
                                         <div class="image-container" style="cursor: pointer;">
                                             <img src="{{ asset('imagenes/' . $game->imagen) }}"
@@ -32,15 +27,12 @@
                                     </a>
                                     <h3 class="text-xs font-semibold mt-2 text-center">{{ $game->titulo }}</h3>
                                 </div>
-                                @php $count++; @endphp
-                                @if ($count % 6 == 0 || $loop->last)
+                            @endforeach
                         </div>
+                    @else
+                        <p>No se encontraron juegos.</p>
                     @endif
-                    @endforeach
                 </div>
-            @else
-                <p>No se encontraron juegos.</p>
-                @endif
             </div>
         </div>
     </div>
@@ -50,10 +42,15 @@
     .containerJuego {
         position: relative;
         overflow: hidden;
+        width: 14.5%; /* Ajusta esto según sea necesario */
+        margin-left: 1%;
+        margin-right: 1%;
+        min-width: 150px; /* Asegura un ancho mínimo adecuado */
     }
 
     .containerJuego img {
         transition: transform 0.3s ease;
+        max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
     }
 
     .containerJuego:hover img {
