@@ -18,3 +18,5 @@ class JuegoPlataforma extends Model
         'plataforma_id',
     ];
 }
+
+// Comentario para modificar archivo y suburlo
