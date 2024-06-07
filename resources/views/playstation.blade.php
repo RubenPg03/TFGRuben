@@ -16,31 +16,23 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if ($games->count() > 0)
-                        <div class="grid grid-cols-6 gap-4">
-                            @php $count = 0; @endphp
+                        <div class="grid grid-cols-6 gap-4 flex flex-wrap">
                             @foreach ($games as $game)
-                                @if ($count % 6 == 0)
-                                    <div class="flex flex-row items-start">
-                                @endif
-                                <div class="p-4 rounded-md flex flex-col items-center shadow-md containerJuego"
-                                    style="width: 14.5%; margin-left: 1%; margin-right: 1%;">
+                                <div class="p-6 rounded-md flex flex-col items-center shadow-md containerJuego">
                                     <a href="{{ route('mostrar', $game->id) }}">
                                         <div class="image-container" style="cursor: pointer;">
                                             <img src="{{ asset('imagenes/' . $game->imagen) }}"
-                                                alt="{{ $game->titulo }}" class="w-32 h-32 object-cover shadow-md">
+                                                alt="{{ $game->titulo }}" class="w-full h-32 object-cover shadow-md">
                                         </div>
                                     </a>
                                     <h3 class="text-xs font-semibold mt-2 text-center">{{ $game->titulo }}</h3>
                                 </div>
-                                @php $count++; @endphp
-                                @if ($count % 6 == 0 || $loop->last)
+                            @endforeach
                         </div>
+                    @else
+                        <p>No se encontraron juegos.</p>
                     @endif
-                    @endforeach
                 </div>
-            @else
-                <p>No se encontraron juegos.</p>
-                @endif
             </div>
         </div>
     </div>
@@ -50,10 +42,8 @@
     .containerJuego {
         position: relative;
         overflow: hidden;
-        width: 14.5%; /* Ajusta esto según sea necesario */
-        margin-left: 1%;
-        margin-right: 1%;
-        min-width: 150px; /* Asegura un ancho mínimo adecuado */
+        min-width: calc(16.666% - 2rem); /* 100% / 6 columnas - margen */
+        flex: 1 1 0; /* Ajusta la flexibilidad para mantener el tamaño uniforme */
     }
 
     .containerJuego img {
