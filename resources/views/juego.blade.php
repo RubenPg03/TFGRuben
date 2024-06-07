@@ -39,13 +39,13 @@
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4 botonCom flex-grow">
                                 <div class="p-2">
                                     <a href="{{ route('comentarios.crear', $game) }}"
-                                        class="text-blue-500 hover:underline w-auto mx-auto">Añadir Comentario</a>
+                                        class="w-auto mx-auto">Añadir Comentario</a>
                                 </div>
                             </div>
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4 botonCal flex-grow">
                                 <div class="p-2">
                                     <a href="{{ route('calificacion.crear', $game) }}"
-                                        class="text-blue-500 hover:underline w-auto mx-auto">Calificar Juego</a>
+                                        class="w-auto mx-auto">Calificar Juego</a>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold mb-4">Tiendas:</h3>
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid gap-4">
                         <?php
                         $tiendasOrdenadas = $game->tiendas->sortBy('precio');
                         ?>

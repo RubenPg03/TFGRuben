@@ -113,7 +113,7 @@
         <!-- Footer -->
         <footer class="text-white py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-center">
-                <button id="backToTop" class="hover:bg-blue-700 text-white font-bold rounded imagen-pequeña">
+                <button id="backToTop" class="text-white font-bold rounded imagen-pequeña">
                     <img src="{{ asset('imagenes/flecha.png') }}"alt="flecha">
                 </button>
             </div>
