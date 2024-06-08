@@ -38,17 +38,15 @@
                         <div class="flex mt-4">
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4 botonCom flex-grow">
                                 <div class="p-2">
-                                    <a href="{{ route('comentarios.crear', $game) }}"
-                                        class="w-auto mx-auto">Añadir Comentario</a>
+                                    <a href="{{ route('comentarios.crear', $game) }}" class="w-auto mx-auto block">Añadir Comentario</a>
                                 </div>
                             </div>
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4 botonCal flex-grow">
                                 <div class="p-2">
-                                    <a href="{{ route('calificacion.crear', $game) }}"
-                                        class="w-auto mx-auto">Calificar Juego</a>
+                                    <a href="{{ route('calificacion.crear', $game) }}" class="w-auto mx-auto block">Calificar Juego</a>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
