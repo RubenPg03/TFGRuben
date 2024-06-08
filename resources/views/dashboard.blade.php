@@ -42,10 +42,8 @@
     .containerJuego {
         position: relative;
         overflow: hidden;
-        width: 14.5%; /* Ajusta esto según sea necesario */
-        margin-left: 1%;
-        margin-right: 1%;
-        min-width: 150px; /* Asegura un ancho mínimo adecuado */
+        min-width: calc(16.666% - 2rem); /* 100% / 6 columnas - margen */
+        flex: 1 1 0; /* Ajusta la flexibilidad para mantener el tamaño uniforme */
     }
 
     .containerJuego img {
