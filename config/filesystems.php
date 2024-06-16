@@ -44,14 +44,6 @@ return [
             'throw' => false,
         ],
 
-        'imagenes' => [
-            'driver' => 'local',
-            'root' => public_path('imagenes'),
-            'url' => env('APP_URL') . '/imagenes',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
-
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
